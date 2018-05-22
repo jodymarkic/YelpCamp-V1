@@ -6,6 +6,8 @@ var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 
+var bodyParser = require("body-parser");
+
 app.use(bodyParser.urlencoded( {extended: true} ));
 
 app.set("view engine", "ejs");
@@ -53,7 +55,6 @@ app.get("/", function(req, res){
     res.render("landing");
 });
 
-
 //INDEX ROUTE
 app.get("/campgrounds", function(req, res){
     Campground.find({}, function(err, allCampgrounds){
@@ -66,10 +67,9 @@ app.get("/campgrounds", function(req, res){
     //res.render("campgrounds", { campgrounds: campgrounds} );
 });
 
-//CREATE ROUTE
+
 app.post("/campgrounds", function(req, res){
     //res.send("you hit the campgrounds page!");
-    
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
@@ -86,11 +86,10 @@ app.post("/campgrounds", function(req, res){
     });
 });
 
-//NEW ROUTE
+
 app.get("/campgrounds/new", function(req, res){
     res.render("new");
 });
-
 
 
 //SHOW ROUTE - shows more info about one campground.
@@ -107,7 +106,6 @@ app.get("/campgrounds/:id", function(req, res){
         }
     });
 });
-
 
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Yelp Camp Server Started!"); 
