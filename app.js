@@ -6,7 +6,6 @@ var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 
-var bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded( {extended: true} ));
 
